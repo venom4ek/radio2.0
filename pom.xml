@@ -73,6 +73,7 @@
                                 <limit>
                                     <counter>BRANCH</counter>
                                     <value>COVEREDCOUNT</value>
+                                    <minimum>1</minimum>
                                 </limit>
                             </limits>
                         </rule>
