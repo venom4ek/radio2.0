@@ -2,31 +2,46 @@ package ru.netology.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioServiceTest {
 
     RadioService radio = new RadioService();
 
+    @BeforeEach
+    public void parameter() {
+        radio.setMaxVolume(10);
+        radio.setMinVolume(0);
+        radio.setMaxStation(9);
+        radio.setMinStation(0);
+    }
+
+
+    @Test
+    public void setCurrentVolumme() {
+        radio.setCurrentVolume(20);
+        int expected = 2;
+        assertEquals(expected, radio.getCurrentVolume());
+    }
+
 
     @Test
     public void setUpCurrentVolume1() {
-        radio.setCurrentVolume(2);
+        radio.setCurrentVolume(12);
         radio.setUpCurrentVolume();
-        int expected = 3;
+        int expected = 13;
         assertEquals(expected, radio.getCurrentVolume());
     }
 
-    @BeforeEach
     @Test
     public void setUpCurrentVolumeWhenMax() {
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.setUpCurrentVolume();
-        int expected = 10;
+        int expected = 100;
         assertEquals(expected, radio.getCurrentVolume());
     }
 
-    @BeforeEach
     @Test
     public void setDownCurrentVolume() {
         radio.setCurrentVolume(2);
@@ -35,7 +50,6 @@ public class RadioServiceTest {
         assertEquals(expected, radio.getCurrentVolume());
     }
 
-    @BeforeEach
     @Test
     public void setDownCurrentVolumeWhenMin() {
         radio.setCurrentVolume(0);
@@ -44,7 +58,6 @@ public class RadioServiceTest {
         assertEquals(expected, radio.getCurrentVolume());
     }
 
-    @BeforeEach
     @Test
     public void setUpCurrentStation() {
         radio.setCurrentStation(7);
@@ -53,7 +66,6 @@ public class RadioServiceTest {
         assertEquals(expected, radio.getCurrentStation());
     }
 
-    @BeforeEach
     @Test
     public void setFirstStationWhenLast() {
         radio.setCurrentStation(9);
@@ -62,7 +74,6 @@ public class RadioServiceTest {
         assertEquals(expected, radio.getCurrentStation());
     }
 
-    @BeforeEach
     @Test
     public void setDownCurrentStation() {
         radio.setCurrentStation(2);
@@ -71,7 +82,6 @@ public class RadioServiceTest {
         assertEquals(expected, radio.getCurrentStation());
     }
 
-    @BeforeEach
     @Test
     public void setLastStationWhenFirst() {
         radio.setCurrentStation(0);
@@ -80,18 +90,9 @@ public class RadioServiceTest {
         assertEquals(expected, radio.getCurrentStation());
     }
 
-    @BeforeEach
     @Test
     public void setRadio() {
         radio.setCurrentStation(2);
-        int expected = 2;
-        assertEquals(expected, radio.getCurrentStation());
-    }
-
-    @BeforeEach
-    @Test
-    public void setCurrentVolumme() {
-        radio.setCurrentVolume(2);
         int expected = 2;
         assertEquals(expected, radio.getCurrentStation());
     }
