@@ -6,28 +6,28 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioServiceTest {
-    private RadioService radio;
+
+    RadioService radio = new RadioService();
 
     @BeforeEach
-    public void radio() {
-    this.radio = new RadioService(0,9,0,100);
+    public void parameter() {
+        radio.setMaxVolume(10);
+        radio.setMinVolume(0);
+        radio.setMaxStation(9);
+        radio.setMinStation(0);
     }
 
-    @Test
-    void setCountStation() {
-        RadioService radio2 = new RadioService(20);
-        assertEquals(19, radio2.getMaxStation());
-    }
 
     @Test
-    void setCurrentVolume() {
+    public void setCurrentVolumme() {
         radio.setCurrentVolume(20);
-        int expected = 20;
+        int expected = 2;
         assertEquals(expected, radio.getCurrentVolume());
     }
 
+
     @Test
-    void setUpCurrentVolume1() {
+    public void setUpCurrentVolume1() {
         radio.setCurrentVolume(12);
         radio.setUpCurrentVolume();
         int expected = 13;
@@ -35,7 +35,7 @@ public class RadioServiceTest {
     }
 
     @Test
-    void setUpCurrentVolumeWhenMax() {
+    public void setUpCurrentVolumeWhenMax() {
         radio.setCurrentVolume(100);
         radio.setUpCurrentVolume();
         int expected = 100;
@@ -43,7 +43,7 @@ public class RadioServiceTest {
     }
 
     @Test
-    void setDownCurrentVolume() {
+    public void setDownCurrentVolume() {
         radio.setCurrentVolume(2);
         radio.setDownCurrentVolume();
         int expected = 1;
@@ -51,7 +51,7 @@ public class RadioServiceTest {
     }
 
     @Test
-    void setDownCurrentVolumeWhenMin() {
+    public void setDownCurrentVolumeWhenMin() {
         radio.setCurrentVolume(0);
         radio.setDownCurrentVolume();
         int expected = 0;
@@ -59,7 +59,7 @@ public class RadioServiceTest {
     }
 
     @Test
-    void setUpCurrentStation() {
+    public void setUpCurrentStation() {
         radio.setCurrentStation(7);
         radio.setUpCurrentStation();
         int expected = 8;
@@ -67,16 +67,7 @@ public class RadioServiceTest {
     }
 
     @Test
-    void setUpUserCurrentStation() {
-        RadioService radio2 = new RadioService(20);
-        radio2.setCurrentStation(18);
-        radio2.setUpCurrentStation();
-        int expected = 19;
-        assertEquals(expected, radio2.getCurrentStation());
-    }
-
-    @Test
-    void setFirstStationWhenLast() {
+    public void setFirstStationWhenLast() {
         radio.setCurrentStation(9);
         radio.setUpCurrentStation();
         int expected = 0;
@@ -84,16 +75,7 @@ public class RadioServiceTest {
     }
 
     @Test
-    void setUserFirstStationWhenLast() {
-        RadioService radio2 = new RadioService(20);
-        radio2.setCurrentStation(19);
-        radio2.setUpCurrentStation();
-        int expected = 0;
-        assertEquals(expected, radio2.getCurrentStation());
-    }
-
-    @Test
-    void setDownCurrentStation() {
+    public void setDownCurrentStation() {
         radio.setCurrentStation(2);
         radio.setDownCurrentStation();
         int expected = 1;
@@ -101,16 +83,7 @@ public class RadioServiceTest {
     }
 
     @Test
-    void setDownUsersCurrentStation() {
-        RadioService radio2 = new RadioService(20);
-        radio2.setCurrentStation(5);
-        radio2.setDownCurrentStation();
-        int expected = 4;
-        assertEquals(expected, radio2.getCurrentStation());
-    }
-
-    @Test
-    void setLastStationWhenFirst() {
+    public void setLastStationWhenFirst() {
         radio.setCurrentStation(0);
         radio.setDownCurrentStation();
         int expected = 9;
@@ -118,33 +91,9 @@ public class RadioServiceTest {
     }
 
     @Test
-    void setUserLastStationWhenFirst() {
-        RadioService radio2 = new RadioService(20);
-        radio2.setCurrentStation(0);
-        radio2.setDownCurrentStation();
-        int expected = 19;
-        assertEquals(expected, radio2.getCurrentStation());
-    }
-
-    @Test
-    void setRadio() {
+    public void setRadio() {
         radio.setCurrentStation(2);
         int expected = 2;
         assertEquals(expected, radio.getCurrentStation());
     }
-
-    @Test
-    void setOverMaxRadio() {
-        radio.setCurrentStation(12);
-        int expected = 0;
-        assertEquals(expected, radio.getCurrentStation());
-    }
-
-    @Test
-    void setUnderMinRadio() {
-        radio.setCurrentStation(-10);
-        int expected = 0;
-        assertEquals(expected, radio.getCurrentStation());
-    }
-
 }
