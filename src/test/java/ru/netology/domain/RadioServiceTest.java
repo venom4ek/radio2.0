@@ -147,4 +147,10 @@ public class RadioServiceTest {
         assertEquals(expected, radio.getCurrentStation());
     }
 
+    @Test
+    void setUnderMinVolume() {
+        radio.setCurrentVolume(-3);
+        int expected = 0;
+        assertEquals(expected, radio.getCurrentVolume());
+    }
 }
