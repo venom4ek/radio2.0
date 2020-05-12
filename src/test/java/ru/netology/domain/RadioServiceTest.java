@@ -38,7 +38,7 @@ public class RadioServiceTest {
     void setUpCurrentVolumeWhenMax() {
         radio.setCurrentVolume(100);
         radio.setUpCurrentVolume();
-        int expected = 100;
+        int expected = 1;
         assertEquals(expected, radio.getCurrentVolume());
     }
 
